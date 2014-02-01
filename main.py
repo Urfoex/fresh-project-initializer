@@ -6,11 +6,8 @@ class Project(object):
     '''A class to handle the setup of a new project'''
     project_name = ""
     project_full_path = ""
-    json_full_path = ""
-    ycm_configuration_name = ".ycm_extra_conf.py"
-    cmake_configuration_name = "CMakeLists.txt"
+    project_build_full_path = ""
     cmake_command = ['cmake', "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON", "-GNinja"]
-    ninja_command = ['ninja', '-C']
 
     def __init__(self):
         pass
@@ -20,13 +17,19 @@ class Project(object):
 
         if len(sys.argv) < 2:
             print("Please set a project name as argument.", "")
+            return False
         else:
             self.project_name = sys.argv[1]
             print("Name of the project:", self.project_name)
+
             self.project_full_path = os.path.join(os.path.expanduser("~"),
                     "projects", self.project_name)
-            self.json_full_path = os.path.join(self.project_full_path, "build")
-            print("JSON full path:", self.json_full_path)
+            print("Project full path:", self.project_full_path)
+
+            self.project_build_full_path = os.path.join(self.project_full_path,
+                    "build")
+            print("Project build full path:", self.project_build_full_path)
+            return True
 
     def build_ycm_configuration_file(self):
         '''Build the configuration file for YCM'''
@@ -38,7 +41,7 @@ import ycm_core
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
 # more details: http://clang.llvm.org/docs/JSONCompilationDatabase.html
-compilation_database_folder = """ + self.json_full_path + """
+compilation_database_folder = """ + self.project_build_full_path + """
 
 if os.path.exists( compilation_database_folder ):
   database = ycm_core.CompilationDatabase( compilation_database_folder )
@@ -132,7 +135,7 @@ def FlagsForFile( filename, **kwargs ):
   }
 """
         a_file = open(os.path.join(self.project_full_path,
-            self.ycm_configuration_name), "w")
+            ".ycm_extra_conf.py"), "w")
         a_file.write(ycm_configuration)
         a_file.close()
 
@@ -183,8 +186,8 @@ ADD_EXECUTABLE( """ + self.project_name + """ ${SOURCE_FILES})
 #ADD_SUBDIRECTORY(images)
 #ADD_SUBDIRECTORY(font)
 """
-        a_file = open(os.path.join(self.project_full_path,
-            self.cmake_configuration_name), "w")
+        a_file = open(os.path.join(self.project_full_path, "CMakeLists.txt"),
+                "w")
         a_file.write(cmake_configuration)
         a_file.close()
 
@@ -230,11 +233,11 @@ default.vim*
 
         self.cmake_command.append(self.project_full_path)
         print("Running:", self.cmake_command)
-        subprocess.check_output(self.cmake_command, cwd=self.json_full_path)
+        subprocess.check_output(self.cmake_command,
+                cwd=self.project_build_full_path)
 
-        self.ninja_command.append(self.json_full_path)
-        print("Running:", self.ninja_command)
-        subprocess.check_output(self.ninja_command)
+        print("Running:", "ninja")
+        subprocess.check_output(["ninja"], cwd=self.project_build_full_path)
 
     def create(self):
         '''Use setup and create files'''
@@ -242,20 +245,22 @@ default.vim*
         if os.path.exists(self.project_full_path):
             print("Project \"" + self.project_name + "\" already exists. Doing "
             "nothing.")
-            return
+            return False
         else:
             os.makedirs(self.project_full_path)
-            os.makedirs(self.json_full_path)
+            os.makedirs(self.project_build_full_path)
             self.build_ycm_configuration_file()
             self.build_cmake_configuration_file()
             self.build_main_cpp_file()
             self.build_hg_ignore_file()
             self.run_commands()
+            print("Setting up", self.project_name, ": Done.")
+            return True
 
 
 if __name__ == "__main__":
     PROJECT = Project()
-    PROJECT.init()
-    PROJECT.create()
+    if PROJECT.init():
+        PROJECT.create()
 
 
