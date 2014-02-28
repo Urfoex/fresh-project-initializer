@@ -5,6 +5,7 @@ import sys, os, subprocess
 class Project(object):
     '''A class to handle the setup of a new project'''
     project_name = ""
+    project_just_name = ""
     project_full_path = ""
     project_build_full_path = ""
     cmake_command = ['cmake', "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON", "-GNinja"]
@@ -20,7 +21,9 @@ class Project(object):
             return False
         else:
             self.project_name = sys.argv[1]
+            self.project_just_name = self.project_name.split('/')[-1]
             print("Name of the project:", self.project_name)
+            print("Just name of the project:", self.project_just_name)
 
             self.project_full_path = os.path.join(os.path.expanduser("~"),
                     "projects", self.project_name)
@@ -142,7 +145,7 @@ def FlagsForFile( filename, **kwargs ):
     def build_cmake_configuration_file(self):
         '''Build the configuration for cmake'''
 
-        cmake_configuration = """PROJECT( """ + self.project_name + """ )
+        cmake_configuration = """PROJECT( """ + self.project_just_name + """ )
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8.11)
 SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -pedantic -g3 -ggdb3")
 
@@ -174,8 +177,8 @@ SET( SOURCE_FILES
 #   include/
 #)
 
-ADD_EXECUTABLE( """ + self.project_name + """ ${SOURCE_FILES})
-#TARGET_LINK_LIBRARIES( """ + self.project_name + """
+ADD_EXECUTABLE( """ + self.project_just_name + """ ${SOURCE_FILES})
+#TARGET_LINK_LIBRARIES( """ + self.project_just_name + """
 #        ${SDL2_LIBRARIES} 
 #        ${SDL2_Image_LIBRARIES}
 #        ${SDL2_ttf_LIBRARIES}
