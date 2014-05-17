@@ -1,34 +1,41 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
 " Clang_Complete to YCM
-" Bundle 'Rip-Rip/clang_complete'
-Bundle 'Valloric/YouCompleteMe'
-" Bundle 'vim-scripts/Conque-GDB'
-Bundle 'kien/ctrlp.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'sjl/gundo.vim'
-Bundle 'derekwyatt/vim-fswitch'
-Bundle 'vim-scripts/ZoomWin'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/TaskList.vim'
-Bundle 'kien/tabman.vim'
-Bundle 'honza/vim-snippets'
+" Plugin 'Rip-Rip/clang_complete'
+Plugin 'Valloric/YouCompleteMe'
+" Plugin 'vim-scripts/Conque-GDB'
+Plugin 'kien/ctrlp.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'sjl/gundo.vim'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'vim-scripts/ZoomWin'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/TaskList.vim'
+Plugin 'kien/tabman.vim'
+Plugin 'honza/vim-snippets'
 " Clang_Complete to YCM
-" Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/bufexplorer.zip'
+" Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/bufexplorer.zip'
 
 
-filetype plugin indent on
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 
 syntax on
