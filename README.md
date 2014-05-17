@@ -4,7 +4,7 @@
     $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 - use correct vimrc
-- 
+
 - powerline-fonts needed for airline:
     https://github.com/Lokaltog/powerline-fonts
 
@@ -12,11 +12,14 @@
     https://powerline.readthedocs.org/en/latest/installation/linux.html#font-installation
 
 - xterm needs modification of ~/.Xresources:
+
     xterm*utf8: 3
     xterm*font: DejaVu Sans Mono for Powerline
     xterm*faceName: DejaVu Sans Mono for Powerline
     xterm*faceSize: 8
-- apply via 
+
+    - apply via: 
+
     xrdb -merge ~/.Xresources
 
 - vim in terminal needs GUI-color-converter:
