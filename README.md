@@ -13,13 +13,15 @@
 
 - xterm needs modification of ~/.Xresources:
 
-    xterm*utf8: 3
-    xterm*font: DejaVu Sans Mono for Powerline
-    xterm*faceName: DejaVu Sans Mono for Powerline
-    xterm*faceSize: 8
+        xterm*utf8: 3
+
+        xterm*font: DejaVu Sans Mono for Powerline
+        
+        xterm*faceName: DejaVu Sans Mono for Powerline
+        
+        xterm*faceSize: 8
 
     - apply via: 
-
     xrdb -merge ~/.Xresources
 
 - vim in terminal needs GUI-color-converter:
