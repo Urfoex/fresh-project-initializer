@@ -20,6 +20,7 @@ Plugin 'SirVer/ultisnips'
 "" Replace powerline with airline
 "" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/powerline-fonts'
 Plugin 'sjl/gundo.vim'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'vim-scripts/ZoomWin'
@@ -79,6 +80,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+set wrap
 set colorcolumn=80
 set textwidth=80
 
@@ -106,7 +108,7 @@ set encoding=utf-8
 set spelllang=en
 
 set foldcolumn=2
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevel=0
 " open all folds on file open
 au BufRead * normal zR 
@@ -145,6 +147,14 @@ let g:UltiSnipsUsePythonVersion=2
 let g:pymode = 1
 let g:pymode_rope_completion = 0
 let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
+let g:pymode_folding = 0
+let g:pymode_options = 0
+" g:pymode_options "
+set complete+=t
+set formatoptions-=t
+set number
+set wrap
+set textwidth=120
 
 set completeopt=menu,menuone,longest
 " Clang_Complete to YCM
@@ -226,3 +236,22 @@ if !exists(":Build")
 
 	command Build silent call BuildIntoBuffer()
 endif
+
+function! FixPySettings()
+    set fdm=indent
+    set wrap
+endfunction
+
+"call FixPySettings()
+"
+function! RemPyTooLong() range
+    setlocal modifiable
+    execute "%s/.*ine too long.*\\n//"
+    setlocal nomodifiable
+endfunction
+
+function! CommentLinesHash()
+    echo getpos("'<")
+    echo getpos("'>")
+endfunction
+
