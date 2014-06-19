@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+"" Syntastic can do checks also pymode can
 Plugin 'scrooloose/syntastic'
 " Clang_Complete to YCM
 " Plugin 'Rip-Rip/clang_complete'
@@ -18,7 +19,10 @@ Plugin 'Valloric/YouCompleteMe'
 " Plugin 'vim-scripts/Conque-GDB'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"" Replace powerline with airline
+"" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/powerline-fonts'
 Plugin 'sjl/gundo.vim'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'vim-scripts/ZoomWin'
@@ -32,6 +36,14 @@ Plugin 'honza/vim-snippets'
 " Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/bufexplorer.zip'
 
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'klen/python-mode'
+Plugin 'flazz/vim-colorschemes'
+"" Only use when cycling through colorschemes
+"" Plugin 'biskark/vim-ultimate-colorscheme-utility'
+"" Colorsupport works better for me
+"" Plugin 'vim-scripts/CSApprox'
+Plugin 'vim-scripts/colorsupport.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,6 +56,11 @@ syntax on
 if has('mouse')
 	set mouse=a
 endif
+
+"colorscheme github
+colorscheme codeschool
+" Cycle through color schemes
+"map W <Leader><Leader>n
 
 set number
 set cursorline
@@ -65,6 +82,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" set wrap
 set colorcolumn=80
 set textwidth=80
 
@@ -125,12 +143,25 @@ let g:syntastic_cpp_no_include_search=1
 
 let g:UltiSnipsUsePythonVersion=2
 let g:UltiSnipsExpandTrigger="<M-Space>"
-
 let g:Powerline_symbols="fancy"
+
+" let g:pymode = 1
+" let g:pymode_rope_completion = 0
+" let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
+" let g:pymode_folding = 0
+" let g:pymode_options = 0
+" " g:pymode_options "
+" set complete+=t
+" set formatoptions-=t
+" set number
+" set wrap
+" set textwidth=120
 
 set completeopt=menu,menuone,longest
 " Clang_Complete to YCM
 " let g:SuperTabDefaultCompletionType='context'
+
+let g:airline_powerline_fonts = 1
 
 
 " Don't use Ex mode, use Q for formatting
@@ -206,3 +237,17 @@ if !exists(":Build")
 
 	command Build silent call BuildIntoBuffer()
 endif
+
+" function! FixPySettings()
+"     set fdm=indent
+"     set wrap
+" endfunction
+" 
+" "call FixPySettings()
+"
+" function! RemPyTooLong() range
+"     setlocal modifiable
+"     execute "%s/.*ine too long.*\\n//"
+"     setlocal nomodifiable
+" endfunction
+"

@@ -1,24 +1,26 @@
 set nocompatible
 filetype off
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" set rtp+=~/.vim/bundle/vundle
-" call vundle#rc()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
+" let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "" Syntastic can do checks also pymode can
-"" Bundle 'scrooloose/syntastic'
-"" Clang_Complete to YCM
-"" Bundle 'Rip-Rip/clang_complete'
-"" Bundle 'Valloric/YouCompleteMe'
-"" Bundle 'vim-scripts/Conque-GDB'
+" Plugin 'scrooloose/syntastic'
+" Clang_Complete to YCM
+" Plugin 'Rip-Rip/clang_complete'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'vim-scripts/Conque-GDB'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 "" Replace powerline with airline
-"" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/powerline-fonts'
 Plugin 'sjl/gundo.vim'
@@ -30,8 +32,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'kien/tabman.vim'
 Plugin 'honza/vim-snippets'
-"" Clang_Complete to YCM
-"" Bundle 'ervandew/supertab'
+" Clang_Complete to YCM
+" Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/bufexplorer.zip'
 
 Plugin 'davidhalter/jedi-vim'
@@ -43,9 +45,9 @@ Plugin 'flazz/vim-colorschemes'
 "" Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-scripts/colorsupport.vim'
 
-
+" All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on
+filetype plugin indent on    " required
 
 
 syntax on
@@ -141,8 +143,7 @@ set conceallevel=2
 
 let g:UltiSnipsUsePythonVersion=2
 " let g:UltiSnipsExpandTrigger="<M-Space>"
-
-"let g:Powerline_symbols="fancy"
+" let g:Powerline_symbols="fancy"
 
 let g:pymode = 1
 let g:pymode_rope_completion = 0
@@ -243,15 +244,10 @@ function! FixPySettings()
 endfunction
 
 "call FixPySettings()
-"
+
 function! RemPyTooLong() range
     setlocal modifiable
     execute "%s/.*ine too long.*\\n//"
     setlocal nomodifiable
-endfunction
-
-function! CommentLinesHash()
-    echo getpos("'<")
-    echo getpos("'>")
 endfunction
 
