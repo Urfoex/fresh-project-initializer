@@ -31,6 +31,7 @@ Plugin 'xolox/vim-session'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/TaskList.vim'
 Plugin 'kien/tabman.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'honza/vim-snippets'
 " Clang_Complete to YCM
 " Plugin 'ervandew/supertab'
@@ -68,6 +69,7 @@ set laststatus=2
 set virtualedit=all
 set t_Co=256
 set scrolloff=5
+set tabpagemax=30
 
 set showcmd
 set showmatch
@@ -177,6 +179,8 @@ inoremap <C-@> <c-x><c-u>
 "nnoremap <silent> <F2> :FSHere<CR>
 "" Clang_Complete to YCM
 "" nnoremap <silent> <F3> :call g:ClangUpdateQuickFix()<CR>
+nnoremap <silent> <S-F3> :TagbarShowTag<CR>
+nnoremap <silent> <F3> :TagbarToggle<CR>
 "nnoremap <silent> <F4> :SyntasticCheck<CR>
 
 nnoremap <silent> <F5> :TaskList<CR>
