@@ -64,6 +64,7 @@ colorscheme codeschool
 "map W <Leader><Leader>n
 
 set number
+set relativenumber
 set cursorline
 set laststatus=2
 set virtualedit=all
@@ -152,6 +153,13 @@ let g:pymode_rope_completion = 0
 let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
 let g:pymode_folding = 0
 let g:pymode_options = 0
+let g:pymode_options_max_line_length = 120
+let g:pymode_run = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_slow_sync = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_print_as_function = 1
+
 " g:pymode_options "
 set complete+=t
 set formatoptions-=t
@@ -191,6 +199,10 @@ nnoremap <silent> <F8> :TMToggle<CR>
 nnoremap <silent> <F9> :TMFocus<CR>
 nnoremap <silent> <F11> :GundoToggle<CR>
 nnoremap <silent> <F12> :ZoomWin<CR>
+
+set autoread
+nnoremap <silent> <Leader>r :checktime<CR>
+
 
 nmap <silent> <Leader>of :FSHere<cr>
 nmap <silent> <Leader>ol :FSRight<cr>
