@@ -14,6 +14,7 @@ ln -fs ~/projects/fresh-project-initializer/py.vimrc ~/.vimrc
 echo "Setting up Powerline-Fonts..."
 cd ~/.vim/bundle/powerline-fonts
 ~/.vim/bundle/powerline-fonts/install.sh
+
 cat >> ~/.Xresources << EOL
 xterm*utf8: 3
 xterm*font: DejaVu Sans Mono for Powerline
@@ -21,6 +22,17 @@ xterm*faceName: DejaVu Sans Mono for Powerline
 xterm*faceSize: 8
 EOL
 xrdb -merge ~/.Xresources
+echo "You may delete multiple lines from ~/.Xresources"
+echo "You may need to re-login."
+
+cat >> ~/.bashrc << EOL
+TERM=xterm-256color
+EOL
+source ~/.bashrc
+echo "You may delete multiple lines from ~/.bashrc"
+
+vim ~/.vim/bundle/vim-colorschemes/colors/codeschool.vim -e -s -c"%s/Code School 3/codeschool/|wq"
+
 echo "If something looks a bit off you may need to set the font in your terminal to a powerline one yourself."
 
 cd ~/.vim/bundle/jedi-vim
