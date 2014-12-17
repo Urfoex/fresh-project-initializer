@@ -31,7 +31,7 @@ EOL
 source ~/.bashrc
 echo "You may delete multiple lines from ~/.bashrc"
 
-vim ~/.vim/bundle/vim-colorschemes/colors/codeschool.vim -e -s -c"%s/Code School 3/codeschool/|wq"
+vim ~/.vim/bundle/vim-colorschemes/colors/codeschool.vim -esc"%s/Code School 3/codeschool/e|wq"
 
 echo "If something looks a bit off you may need to set the font in your terminal to a powerline one yourself."
 
