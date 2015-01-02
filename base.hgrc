@@ -1,0 +1,13 @@
+[extensions]
+color =
+bookmarks =
+churn =
+histedit =
+progress =
+purge =
+rebase =
+convert =
+record =
+
+[ui]
+editor = vim
