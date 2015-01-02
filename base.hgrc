@@ -8,6 +8,7 @@ purge =
 rebase =
 convert =
 record =
+shelve =
 
 [ui]
 editor = vim
