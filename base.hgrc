@@ -1,0 +1,20 @@
+[extensions]
+color =
+bookmarks =
+churn =
+histedit =
+progress =
+purge =
+rebase =
+convert =
+record =
+shelve =
+
+[ui]
+editor = vim
+merge = vimdiff
+
+[merge-tools]
+vimdiff.executable = vimdiff
+vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
+vimdiff.premerge = keep

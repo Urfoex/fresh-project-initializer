@@ -4,7 +4,7 @@ syntax on
 "
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-	set mouse=a
+    set mouse=a
 endif
 
 "colorscheme github
@@ -20,6 +20,10 @@ set virtualedit=all
 set t_Co=256
 set scrolloff=5
 set tabpagemax=30
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+endif
 
 set showcmd
 set showmatch
@@ -46,6 +50,7 @@ set incsearch
 set backspace=indent,eol,start
 set history=100 " keep 100 lines of command line history
 set noundofile
+set clipboard+=unnamed
 
 "set sessionoptions-=curdir
 set ssop-=curdir
@@ -98,8 +103,11 @@ let g:UltiSnipsUsePythonVersion=2
 " let g:Powerline_symbols="fancy"
 
 let g:pymode = 1
+let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_fly = 0
 let g:pymode_folding = 0
 let g:pymode_options = 0
 let g:pymode_options_max_line_length = 120
@@ -121,8 +129,9 @@ set completeopt=menu,menuone,longest
 " let g:SuperTabDefaultCompletionType='context'
 
 let g:airline_powerline_fonts = 1
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 if has('gui_running')
-	set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
 endif
 
 
@@ -219,3 +228,9 @@ function! RemPyTooLong() range
     setlocal nomodifiable
 endfunction
 
+function! FixHTMLEncoding() range
+    execute a:firstline . "," . a:lastline . "s/&lt;/</ge"
+    execute a:firstline . "," . a:lastline . "s/&gt;/>/ge"
+    execute a:firstline . "," . a:lastline . "s/&amp;/\\&/ge"
+    execute a:firstline . "," . a:lastline . "s/&quot;/\"/ge"
+endfunction
