@@ -45,6 +45,12 @@ Plugin 'flazz/vim-colorschemes'
 "" Colorsupport works better for me
 "" Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-scripts/colorsupport.vim'
+Plugin 'chrisbra/NrrwRgn'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'chrisbra/changesPlugin'
+
+Plugin 'vim-scripts/dbext.vim'
+"Plugin 'JessicaKMcIntosh/Vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,13 +61,14 @@ syntax on
 "
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-	set mouse=a
+    set mouse=a
 endif
 
 "colorscheme github
 colorscheme codeschool
 " Cycle through color schemes
 "map W <Leader><Leader>n
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 set number
 set relativenumber
@@ -71,6 +78,10 @@ set virtualedit=all
 set t_Co=256
 set scrolloff=5
 set tabpagemax=30
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+endif
 
 set showcmd
 set showmatch
@@ -97,6 +108,7 @@ set incsearch
 set backspace=indent,eol,start
 set history=100 " keep 100 lines of command line history
 set noundofile
+set clipboard+=unnamed
 
 "set sessionoptions-=curdir
 set ssop-=curdir
@@ -149,8 +161,11 @@ let g:UltiSnipsUsePythonVersion=2
 " let g:Powerline_symbols="fancy"
 
 let g:pymode = 1
+let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_fly = 0
 let g:pymode_folding = 0
 let g:pymode_options = 0
 let g:pymode_options_max_line_length = 120
@@ -172,6 +187,9 @@ set completeopt=menu,menuone,longest
 " let g:SuperTabDefaultCompletionType='context'
 
 let g:airline_powerline_fonts = 1
+if has('gui_running')
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+endif
 
 
 " Don't use Ex mode, use Q for formatting
@@ -267,3 +285,9 @@ function! RemPyTooLong() range
     setlocal nomodifiable
 endfunction
 
+function! FixHTMLEncoding() range
+    execute a:firstline . "," . a:lastline . "s/&lt;/</ge"
+    execute a:firstline . "," . a:lastline . "s/&gt;/>/ge"
+    execute a:firstline . "," . a:lastline . "s/&amp;/\\&/ge"
+    execute a:firstline . "," . a:lastline . "s/&quot;/\"/ge"
+endfunction
