@@ -1,16 +1,13 @@
 source ~/projects/fresh-project-initializer/py.bundle.vimrc
 
 syntax on
-"
+
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
     set mouse=a
 endif
 
-"colorscheme github
 colorscheme codeschool
-" Cycle through color schemes
-"map W <Leader><Leader>n
 
 set number
 set relativenumber
@@ -72,35 +69,11 @@ set foldlevel=0
 " open all folds on file open
 au BufRead * normal zR 
 
-" Clang_Complete to YCM
-" let g:clang_auto_select=1
-" let g:clang_complete_auto=0
-" let g:clang_complete_copen=1
-" let g:clang_hl_errors=1
-" let g:clang_periodic_quickfix=0
-" let g:clang_user_options='-std=c++11'
-" let g:clang_use_library=1
-" let g:clang_snippets = 1
-" let g:clang_snippets_engine = 'clang_complete'
-" let g:clang_complete_patterns = 1
-" let g:clang_complete_macros = 1
-" let g:clang_close_preview=1
-" let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
-" 
-" let g:clang_conceal_snippets=1
 set	concealcursor=vin
 set conceallevel=2
 
-"let g:ycm_confirm_extra_conf = 0
-""let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-
-"let g:syntastic_auto_loc_list=1
-"let g:syntastic_cpp_compiler_options='-std=c++11'
-"let g:syntastic_cpp_no_include_search=1
 
 let g:UltiSnipsUsePythonVersion=2
-" let g:UltiSnipsExpandTrigger="<M-Space>"
-" let g:Powerline_symbols="fancy"
 
 let g:pymode = 1
 let g:pymode_rope = 0
@@ -125,8 +98,6 @@ set wrap
 set textwidth=120
 
 set completeopt=menu,menuone,longest
-" Clang_Complete to YCM
-" let g:SuperTabDefaultCompletionType='context'
 
 let g:airline_powerline_fonts = 1
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
@@ -146,8 +117,6 @@ inoremap <C-Space> <c-x><c-u>
 inoremap <C-@> <c-x><c-u>
 
 "nnoremap <silent> <F2> :FSHere<CR>
-"" Clang_Complete to YCM
-"" nnoremap <silent> <F3> :call g:ClangUpdateQuickFix()<CR>
 nnoremap <silent> <S-F3> :TagbarShowTag<CR>
 nnoremap <silent> <F3> :TagbarToggle<CR>
 "nnoremap <silent> <F4> :SyntasticCheck<CR>
@@ -161,9 +130,9 @@ nnoremap <silent> <F9> :TMFocus<CR>
 nnoremap <silent> <F11> :GundoToggle<CR>
 nnoremap <silent> <F12> :ZoomWin<CR>
 
+
 set autoread
 nnoremap <silent> <Leader>r :checktime<CR>
-
 
 nmap <silent> <Leader>of :FSHere<cr>
 nmap <silent> <Leader>ol :FSRight<cr>
@@ -197,23 +166,6 @@ endif
 """""""""""""""""""
 " Custom commands "
 """""""""""""""""""
-
-" Create a new file where the build log will be placed in.
-" Reuse the file on future builds.
-if !exists(":Build")
-	function! BuildIntoBuffer()
-		" setlocal autoread
-		let tmp_file = fnamemodify("build.log",":p")
-		" getcwd() 
-		" tempname()
-		execute "! echo \"  vim: autoread\" > " . tmp_file
-		execute "!ninja -C build >>" . tmp_file
-		execute "badd" . tmp_file
-		redraw!
-	endfunction
-
-	command Build silent call BuildIntoBuffer()
-endif
 
 function! FixPySettings()
     set fdm=indent

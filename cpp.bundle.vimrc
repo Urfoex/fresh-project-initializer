@@ -45,6 +45,9 @@ Plugin 'flazz/vim-colorschemes'
 "" Colorsupport works better for me
 "" Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-scripts/colorsupport.vim'
+Plugin 'chrisbra/NrrwRgn'
+Plugin 'wesQ3/vim-windowswap'
+Plugin 'chrisbra/changesPlugin'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

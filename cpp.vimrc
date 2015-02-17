@@ -1,25 +1,26 @@
 source ~/projects/fresh-project-initializer/cpp.bundle.vimrc
 
-
 syntax on
-"
+
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
 	set mouse=a
 endif
 
-"colorscheme github
 colorscheme codeschool
-" Cycle through color schemes
-"map W <Leader><Leader>n
 
 set number
+set relativenumber
 set cursorline
 set laststatus=2
 set virtualedit=all
 set t_Co=256
 set scrolloff=5
 set tabpagemax=30
+set noerrorbells visualbell t_vb=
+if has('autocmd')
+    autocmd GUIEnter * set visualbell t_vb=
+endif
 
 set showcmd
 set showmatch
@@ -46,6 +47,7 @@ set incsearch
 set backspace=indent,eol,start
 set history=100 " keep 100 lines of command line history
 set noundofile
+set clipboard+=unnamed
 
 "set sessionoptions-=curdir
 set ssop-=curdir
@@ -67,22 +69,6 @@ set foldlevel=0
 " open all folds on file open
 au BufRead * normal zR 
 
-" Clang_Complete to YCM
-" let g:clang_auto_select=1
-" let g:clang_complete_auto=0
-" let g:clang_complete_copen=1
-" let g:clang_hl_errors=1
-" let g:clang_periodic_quickfix=0
-" let g:clang_user_options='-std=c++11'
-" let g:clang_use_library=1
-" let g:clang_snippets = 1
-" let g:clang_snippets_engine = 'clang_complete'
-" let g:clang_complete_patterns = 1
-" let g:clang_complete_macros = 1
-" let g:clang_close_preview=1
-" let g:clang_auto_user_options="path, .clang_complete, compile_commands.json"
-" 
-" let g:clang_conceal_snippets=1
 set	concealcursor=vin
 set conceallevel=2
 
@@ -97,23 +83,10 @@ let g:UltiSnipsUsePythonVersion=2
 let g:UltiSnipsExpandTrigger="<M-Space>"
 let g:Powerline_symbols="fancy"
 
-" let g:pymode = 1
-" let g:pymode_rope_completion = 0
-" let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257', 'pyflakes']
-" let g:pymode_folding = 0
-" let g:pymode_options = 0
-" " g:pymode_options "
-" set complete+=t
-" set formatoptions-=t
-" set number
-" set wrap
-" set textwidth=120
-
 set completeopt=menu,menuone,longest
-" Clang_Complete to YCM
-" let g:SuperTabDefaultCompletionType='context'
 
 let g:airline_powerline_fonts = 1
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 if has('gui_running')
 	set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
 endif
@@ -130,8 +103,6 @@ inoremap <C-Space> <c-x><c-u>
 inoremap <C-@> <c-x><c-u>
 
 nnoremap <silent> <F2> :FSHere<CR>
-" Clang_Complete to YCM
-" nnoremap <silent> <F3> :call g:ClangUpdateQuickFix()<CR>
 nnoremap <silent> <S-F3> :TagbarShowTag<CR>
 nnoremap <silent> <F3> :TagbarToggle<CR>
 nnoremap <silent> <F4> :SyntasticCheck<CR>
@@ -144,6 +115,10 @@ nnoremap <silent> <F8> :TMToggle<CR>
 nnoremap <silent> <F9> :TMFocus<CR>
 nnoremap <silent> <F11> :GundoToggle<CR>
 nnoremap <silent> <F12> :ZoomWin<CR>
+
+
+set autoread
+nnoremap <silent> <Leader>r :checktime<CR>
 
 nmap <silent> <Leader>of :FSHere<cr>
 nmap <silent> <Leader>ol :FSRight<cr>
@@ -195,16 +170,3 @@ if !exists(":Build")
 	command Build silent call BuildIntoBuffer()
 endif
 
-" function! FixPySettings()
-"     set fdm=indent
-"     set wrap
-" endfunction
-" 
-" "call FixPySettings()
-"
-" function! RemPyTooLong() range
-"     setlocal modifiable
-"     execute "%s/.*ine too long.*\\n//"
-"     setlocal nomodifiable
-" endfunction
-"
