@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 '''Script to create the initial setup for a new project'''
 
 import sys, os, subprocess
@@ -156,7 +158,7 @@ SET( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -pedantic -g3 
 #FIND_PACKAGE( Qt5Gui REQUIRED)
 #FIND_PACKAGE( Qt5Quick REQUIRED)
 #FIND_PACKAGE( Qt5Widgets REQUIRED)
-        
+
 #FIND_PACKAGE( PkgConfig)
 #PKG_CHECK_MODULES(SDL2 REQUIRED sdl2)
 #PKG_CHECK_MODULES(SDL2_Image REQUIRED SDL2_image)
@@ -179,7 +181,7 @@ SET( SOURCE_FILES
 
 ADD_EXECUTABLE( """ + self.project_just_name + """ ${SOURCE_FILES})
 #TARGET_LINK_LIBRARIES( """ + self.project_just_name + """
-#        ${SDL2_LIBRARIES} 
+#        ${SDL2_LIBRARIES}
 #        ${SDL2_Image_LIBRARIES}
 #        ${SDL2_ttf_LIBRARIES}
 #        ${BULLET_LIBRARIES}

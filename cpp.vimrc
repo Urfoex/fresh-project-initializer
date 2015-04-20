@@ -1,6 +1,9 @@
 source ~/projects/fresh-project-initializer/cpp.bundle.vimrc
 source ~/projects/fresh-project-initializer/base.vimrc
 
+set noexpandtab
+set foldmethod=syntax
+
 let g:ycm_confirm_extra_conf = 0
 "let g:ycm_global_ycm_extra_conf="~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
 

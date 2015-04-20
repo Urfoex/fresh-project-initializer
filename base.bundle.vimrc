@@ -1,10 +1,10 @@
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neomru.vim'
 Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/powerline-fonts'
 Plugin 'sjl/gundo.vim'
@@ -24,3 +24,8 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'chrisbra/changesPlugin'
 
 Plugin 'vim-scripts/dbext.vim'
+Plugin 'JLimperg/Align'
+Plugin 'jphustman/SQLUtilities'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'AndrewRadev/linediff.vim'

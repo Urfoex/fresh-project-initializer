@@ -9,6 +9,8 @@ rebase =
 convert =
 record =
 shelve =
+# hggit = ~/projects/hg-git/hggit/
+pager =
 
 [ui]
 editor = vim
@@ -18,3 +20,8 @@ merge = vimdiff
 vimdiff.executable = vimdiff
 vimdiff.args = -f -d $output -M $local $base $other -c "wincmd J" -c "set modifiable" -c "set write"
 vimdiff.premerge = keep
+
+[pager]
+pager = LESS='FRSXQ' less
+quiet = True
+attend = outgoing,incoming,diff,status,log,qdiff,blame,annotate,pdiff,glog
