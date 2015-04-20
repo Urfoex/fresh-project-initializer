@@ -15,7 +15,7 @@ def main():
     with open(py_bundle_vimrc, mode='r') as vimrc:
         with open(py_bundle_vimrc_nojedi, mode='w') as vimrc_nojedi:
             for line in vimrc:
-                if line.startswith("Plugin 'klen/python-mode'"):
+                if line.startswith("Plugin 'davidhalter/jedi-vim'"):
                     line = '" ' + line
                 vimrc_nojedi.write(line)
 
