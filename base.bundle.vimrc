@@ -29,3 +29,4 @@ Plugin 'jphustman/SQLUtilities'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'AndrewRadev/linediff.vim'
+Plugin 'will133/vim-dirdiff'

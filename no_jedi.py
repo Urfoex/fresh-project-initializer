@@ -5,8 +5,8 @@ import os
 import subprocess
 
 def main():
-    current_file = os.path.abspath(__file__)
-    current_dir = os.path.abspath(os.path.curdir)
+    # current_dir = os.path.abspath(os.path.curdir)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     nojedi_tag = '.nojedi'
     py_vimrc = os.path.join(current_dir, 'py.vimrc')
     py_vimrc_nojedi = os.path.join(current_dir, 'py.vimrc'+nojedi_tag)
