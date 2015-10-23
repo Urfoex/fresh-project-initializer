@@ -105,6 +105,16 @@ nnoremap <silent> <F11> :GundoToggle<CR>
 nnoremap <silent> <F12> :ZoomWin<CR>
 
 
+function CountEditors()
+    :Gblame
+    :set modifiable
+    :%s/.\{-} (\(.\{-}\)\s* 20.\{-}).*/\1/
+    :% !sort | uniq -c
+endfunction
+
+nnoremap <silent> <LEADER>who :call CountEditors()<CR>
+
+
 set autoread
 nnoremap <silent> <Leader>r :checktime<CR>
 
@@ -112,6 +122,10 @@ nnoremap <silent> <Leader>r :checktime<CR>
 nnoremap <C-p> :Unite<CR>
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 let g:unite_source_history_yank_enable = 1
+
+
+map <C-PAGEUP> :bp<CR>
+map <C-PAGEDOWN> :bn<CR>
 
 
 " When editing a file, always jump to the last known cursor position.
