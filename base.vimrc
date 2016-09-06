@@ -6,6 +6,7 @@ if has('mouse')
 endif
 
 colorscheme codeschool
+set termguicolors
 
 set number
 set relativenumber
