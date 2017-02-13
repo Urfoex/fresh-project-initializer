@@ -1,24 +1,30 @@
 set nocompatible
 filetype off
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdcommenter'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Lokaltog/powerline-fonts'
+
 Plugin 'sjl/gundo.vim'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'tpope/vim-surround'
-
-Plugin 'bling/vim-airline'
-Plugin 'Lokaltog/powerline-fonts'
 Plugin 'flazz/vim-colorschemes'
 
 Plugin 'chrisbra/NrrwRgn'
 Plugin 'chrisbra/changesPlugin'
 
-Plugin 'vim-scripts/dbext.vim'
+" use newer http://www.vim.org/scripts/script.php?script_id=356
+"Plugin 'vim-scripts/dbext.vim'
 Plugin 'JLimperg/Align'
 Plugin 'jphustman/SQLUtilities'
 
@@ -27,12 +33,15 @@ Plugin 'AndrewRadev/linediff.vim'
 Plugin 'will133/vim-dirdiff'
 Plugin 'chrisbra/vim-diff-enhanced'
 
-Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
-
 " Plugin 'klen/python-mode'
-Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'scrooloose/syntastic'
 
+" Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'IngoHeimbach/semantic-highlight.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
@@ -41,20 +50,27 @@ if has('mouse')
     set mouse=a
 endif
 
-colorscheme molokai
 set termguicolors
+colorscheme molokai
 
 set number
 set relativenumber
 set cursorline
+set cursorcolumn
 set laststatus=2
 set virtualedit=all
 " set t_Co=256
 set scrolloff=5
+set sidescrolloff=1
 set tabpagemax=30
 set switchbuf=usetab
 set splitright
 set splitbelow
+
+" works with Konsole
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -75,7 +91,7 @@ set softtabstop=4
 set shiftwidth=4
 
 set wrap
-set colorcolumn=80
+set colorcolumn=80,120
 set textwidth=120
 
 set ignorecase
@@ -83,15 +99,21 @@ set smartcase
 set hlsearch
 set incsearch
 
+runtime! macros/matchit.vim
+
 set backspace=indent,eol,start
 set history=100 " keep 100 lines of command line history
 set undofile
 set clipboard+=unnamed
 
-"set sessionoptions-=curdir
-set ssop-=curdir
-"set sessionoptions+=sesdir
-set ssop+=sesdir
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:$
+set formatoptions+=j
+
+set sessionoptions-=curdir
+set sessionoptions-=options
+"set ssop-=curdir
+set sessionoptions+=sesdir
+"set ssop+=sesdir
 let g:session_directory=getcwd()
 let g:session_autosave='no'
 
@@ -134,6 +156,9 @@ inoremap <C-@> <c-x><c-u>
 map <C-PAGEUP> :bp<CR>
 map <C-PAGEDOWN> :bn<CR>
 
+nnoremap <silent> <F4> :SyntasticCheck<CR>
+nnoremap <silent> <F5> :SemanticHighlightToggle<CR>
+
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -161,6 +186,8 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylint', 'python']
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_cpp_compiler_options='-std=c++1z'
 let g:syntastic_cpp_no_include_search=1
 
@@ -170,5 +197,3 @@ let g:syntastic_mode_map = {
 	\ "passive_filetypes": [] }
 
 let g:semanticEnableFileTypes=['javascript', 'typescript', 'ruby', 'php', 'python', 'coffee', 'c', 'cpp', 'java', 'rust']
-
-nnoremap <silent> <F4> :SyntasticCheck<CR>
